@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wonkyung Lee – Economist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@300;400&family=IBM+Plex+Sans:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #f8f7f4;
+      --text:     #1c1c1a;
+      --muted:    #6e6e68;
+      --accent:   #1d3f6e;
+      --accent2:  #b5862a;
+      --border:   #ddddd6;
+      --serif:    'Lora', Georgia, serif;
+      --mono:     'IBM Plex Mono', monospace;
+      --sans:     'IBM Plex Sans', sans-serif;
+      --sidebar:  200px;
+    }
+
+    html { font-size: 17px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--serif);
+      line-height: 1.75;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ── Top bar ── */
+    .topbar {
+      background: var(--accent);
+      height: 4px;
+      width: 100%;
+    }
+
+    /* ── Outer wrapper ── */
+    .wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── Header ── */
+    header {
+      padding: 4rem 0 3rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: start;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .name {
+      font-family: var(--serif);
+      font-size: 2.4rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .position-tag {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 0.8rem;
+    }
+
+    .affil {
+      font-family: var(--sans);
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .header-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.55rem;
+      padding-top: 0.3rem;
+    }
+
+    .contact-item {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+    .contact-item a { color: var(--muted); }
+    .contact-item a:hover { color: var(--accent); text-decoration: none; }
+
+    .cv-btn {
+      margin-top: 0.4rem;
+      display: inline-block;
+      padding: 0.4rem 1.1rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 0.67rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all 0.18s;
+    }
+    .cv-btn:hover {
+      background: var(--accent);
+      color: var(--bg);
+      text-decoration: none;
+    }
+
+    /* ── Two-column body ── */
+    .body-grid {
+      display: grid;
+      grid-template-columns: var(--sidebar) 1fr;
+      gap: 0;
+    }
+
+    /* ── Sidebar nav ── */
+    .sidebar {
+      padding-top: 4rem;
+      padding-right: 2.5rem;
+      border-right: 1px solid var(--border);
+    }
+
+    .sidebar nav {
+      position: sticky;
+      top: 3rem;
+    }
+
+    .nav-link {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.35rem 0;
+      border-left: 2px solid transparent;
+      padding-left: 0.8rem;
+      margin-left: -0.8rem;
+      transition: color 0.15s, border-color 0.15s;
+      text-decoration: none;
+    }
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ── Main content ── */
+    main {
+      padding: 4rem 0 6rem 3.5rem;
+    }
+
+    /* ── Section ── */
+    section {
+      margin-bottom: 4rem;
+      scroll-margin-top: 3rem;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.67rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 1.4rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── About ── */
+    .about-text {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text);
+      max-width: 580px;
+    }
+
+    .fields {
+      margin-top: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .field-tag {
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.2rem 0.65rem;
+      opacity: 0.75;
+    }
+
+    /* ── Papers ── */
+    .paper-list {
+      list-style: none;
+    }
+
+    .paper-item {
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+      padding-left: 0.6rem;
+      margin-left: -0.6rem;
+      border-radius: 2px;
+    }
+    .paper-item:first-child { padding-top: 0; }
+    .paper-item:last-child { border-bottom: none; }
+    .paper-item:hover { background: rgba(29, 63, 110, 0.035); }
+
+    .paper-title {
+      font-family: var(--serif);
+      font-size: 0.97rem;
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    .paper-title a { color: var(--text); }
+    .paper-title a:hover { color: var(--accent); text-decoration: underline; }
+
+    .paper-meta {
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .paper-journal {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    .paper-abstract {
+      margin-top: 0.5rem;
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 560px;
+    }
+
+    .paper-year {
+      font-family: var(--mono);
+      font-size: 0.67rem;
+      color: var(--accent2);
+      font-weight: 300;
+    }
+
+    /* ── Teaching ── */
+    .course-list {
+      list-style: none;
+    }
+    .course-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.5rem;
+      align-items: baseline;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .course-item:last-child { border-bottom: none; }
+    .course-level {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      color: var(--accent2);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .course-name {
+      font-size: 0.95rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .body-grid { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      main { padding: 2.5rem 0 4rem; }
+      header { grid-template-columns: 1fr; }
+      .header-right { align-items: flex-start; }
+      .name { font-size: 1.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar"></div>
+
+<div class="wrapper">
+
+  <!-- ── Header ── -->
+  <header>
+    <div class="header-left">
+      <div class="name">Wonkyung Lee</div>
+      <div class="position-tag">Assistant Professor · Economics</div>
+      <div class="affil">
+        Incheon National University<br>
+        College of Social Sciences
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="contact-item"><a href="mailto:wonkyunglee@inu.ac.kr">wonkyunglee@inu.ac.kr</a></div>
+      <div class="contact-item">Incheon, Republic of Korea</div>
+      <a class="cv-btn" href="#">Download CV</a>
+    </div>
+  </header>
+
+  <!-- ── Body ── -->
+  <div class="body-grid">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <nav>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#working-papers">Working Papers</a>
+        <a class="nav-link" href="#publications">Publications</a>
+        <a class="nav-link" href="#teaching">Teaching</a>
+      </nav>
+    </aside>
+
+    <!-- Main -->
+    <main>
+
+      <!-- About -->
+      <section id="about">
+        <div class="section-label">About</div>
+        <p class="about-text">
+          I am an Assistant Professor of Economics at Incheon National University. My research focuses on international trade policy, with particular emphasis on antidumping, export controls, and critical minerals. I also work at the intersection of machine learning and econometrics — applying methods such as causal ML, high-dimensional regularization, and nonparametric identification to trade and finance questions.
+        </p>
+        <div class="fields">
+          <span class="field-tag">International Trade</span>
+          <span class="field-tag">Trade Policy</span>
+          <span class="field-tag">Causal Inference</span>
+          <span class="field-tag">ML × Econometrics</span>
+          <span class="field-tag">Critical Minerals</span>
+          <span class="field-tag">Applied Microeconometrics</span>
+        </div>
+      </section>
+
+      <!-- Working Papers -->
+      <section id="working-papers">
+        <div class="section-label">Working Papers</div>
+        <ul class="paper-list">
+          <li class="paper-item">
+            <div class="paper-title">Trade Effects of Export Controls on Critical Minerals: Evidence from U.S. Import Data</div>
+            <div class="paper-meta">Wonkyung Lee &nbsp;·&nbsp; <span class="paper-year">2024</span></div>
+            <div class="paper-abstract">
+              Using an event-study design with two-way fixed effects, I estimate the causal impact of China's export restrictions on gallium, germanium, graphite, and antimony on U.S. import volumes and unit values, separating price from quantity margins.
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Publications -->
+      <section id="publications">
+        <div class="section-label">Publications</div>
+        <ul class="paper-list">
+
+          <li class="paper-item">
+            <div class="paper-title">
+              <a href="https://doi.org/10.1016/j.frl.2025.106620" target="_blank">US economic policy uncertainty and China's outward investment diversification</a>
+            </div>
+            <div class="paper-meta">
+              Kim, Hee-Eun, <strong>Lee, Wonkyung</strong>, &amp; Moon, Jiyong &nbsp;·&nbsp;
+              <span class="paper-journal">Finance Research Letters</span>, 73, 106620 &nbsp;·&nbsp;
+              <span class="paper-year">2025</span>
+            </div>
+          </li>
+
+          <li class="paper-item">
+            <div class="paper-title">
+              <a href="#" target="_blank">Tit-for-tat in antidumping: How did China fight its antidumping wars with its trading partners?</a>
+            </div>
+            <div class="paper-meta">
+              <strong>Lee, Wonkyung</strong>, Ma, Hong, &amp; Xu, Yuan &nbsp;·&nbsp;
+              <span class="paper-journal">Journal of Comparative Economics</span>, 53(1), 165–181 &nbsp;·&nbsp;
+              <span class="paper-year">2025</span>
+            </div>
+          </li>
+
+          <li class="paper-item">
+            <div class="paper-title">
+              <a href="https://doi.org/10.1007/s40815-025-02013-0" target="_blank">Fuzzy multinomial logistic regression analysis and its applications to sovereign credit ratings</a>
+            </div>
+            <div class="paper-meta">
+              Yoon, Jin Hee, Koo, Yoo Young, <strong>Lee, Wonkyung</strong>, &amp; Kim, Dae Jong &nbsp;·&nbsp;
+              <span class="paper-journal">International Journal of Fuzzy Systems</span> &nbsp;·&nbsp;
+              <span class="paper-year">2025</span>
+            </div>
+          </li>
+
+          <li class="paper-item">
+            <div class="paper-title">RE and RG indices and their fuzzy applications: New indices for criteria of financial crisis detection as early warning systems</div>
+            <div class="paper-meta">
+              Yoon, Jin Hee, Koo, Yoo Young, <strong>Lee, Wonkyung</strong>, &amp; Kim, Dae Jong &nbsp;·&nbsp;
+              <span class="paper-journal">International Journal of Fuzzy Systems</span> &nbsp;·&nbsp;
+              <span class="paper-year">Accepted</span>
+            </div>
+          </li>
+
+          <li class="paper-item">
+            <div class="paper-title">
+              <a href="#" target="_blank">Export tax rebate and the margins of exports: Product-level evidence from a quasi-natural experiment</a>
+            </div>
+            <div class="paper-meta">
+              <strong>Lee, Wonkyung</strong>, Ma, Hong, &amp; Xu, Yuan &nbsp;·&nbsp;
+              <span class="paper-journal">International Tax and Public Finance</span>, 28(2), 386–404 &nbsp;·&nbsp;
+              <span class="paper-year">2021</span>
+            </div>
+          </li>
+
+          <li class="paper-item">
+            <div class="paper-title">Media oversight and corporate digital transformation: Empirical evidence from Chinese A-share listed firms</div>
+            <div class="paper-meta">
+              Wang, Hongshen, <strong>Lee, Wonkyung</strong>, &amp; Lee, Eunhye &nbsp;·&nbsp;
+              <span class="paper-journal">전문경영인연구</span>, 28(3), 237–264 &nbsp;·&nbsp;
+              <span class="paper-year">2025</span>
+            </div>
+          </li>
+
+          <li class="paper-item">
+            <div class="paper-title">Effectiveness analysis of Success Repayable Loan System for overseas resources development projects in Korea</div>
+            <div class="paper-meta">
+              Cho, Young-Ah, &amp; <strong>Lee, Wonkyung</strong> &nbsp;·&nbsp;
+              <span class="paper-journal">한국지구시스템공학회지</span>, 47(4), 450–456 &nbsp;·&nbsp;
+              <span class="paper-year">2010</span>
+            </div>
+          </li>
+
+        </ul>
+      </section>
+
+      <!-- Teaching -->
+      <section id="teaching">
+        <div class="section-label">Teaching</div>
+        <ul class="course-list">
+          <li class="course-item">
+            <span class="course-level">Undergraduate</span>
+            <span class="course-name">International Trade Theory (국제무역론)</span>
+          </li>
+          <li class="course-item">
+            <span class="course-level">Graduate</span>
+            <span class="course-name">Advanced Topics in Macroeconomics (거시경제학특강)</span>
+          </li>
+        </ul>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div>Wonkyung Lee &nbsp;·&nbsp; Incheon National University &nbsp;·&nbsp; Last updated: 2025</div>
+  </footer>
+
+</div>
+
+<script>
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
