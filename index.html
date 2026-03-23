@@ -61,6 +61,18 @@
     .course-level { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.06em; color: var(--accent2); text-transform: uppercase; white-space: nowrap; }
     .course-name { font-size: 0.95rem; }
     footer { border-top: 1px solid var(--border); padding: 2rem 0; font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.05em; }
+
+    @media print {
+      .topbar, .sidebar, .cv-btn, .fields { display: none; }
+      .body-grid { display: block; }
+      main { padding: 0; }
+      .wrapper { padding: 0; max-width: 100%; }
+      header { padding: 1rem 0; }
+      .paper-item:hover { background: none; }
+      body { font-size: 11pt; }
+      .name { font-size: 1.8rem; }
+      a { color: inherit; text-decoration: none; }
+    }
     @media (max-width: 640px) {
       .body-grid { grid-template-columns: 1fr; }
       .sidebar { display: none; }
@@ -85,7 +97,7 @@
     <div class="header-right">
       <div class="contact-item"><a href="mailto:wonkyunglee@inu.ac.kr">wonkyunglee@inu.ac.kr</a></div>
       <div class="contact-item">Incheon, Republic of Korea</div>
-      <a class="cv-btn" href="#">Download CV</a>
+      <a class="cv-btn" href="#" onclick="window.print(); return false;">Download CV</a>
     </div>
   </header>
 
